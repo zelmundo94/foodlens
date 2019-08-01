@@ -175,14 +175,14 @@ class App extends Component {
   };
 
   changeCameraType() {
-    if (this.state.idealFacingMode === FACING_MODE.ENVIRONMENT) {
+    if (this.state.idealFacingMode === FACING_MODES.ENVIRONMENT) {
       this.setState({
-        idealFacingMode: FACING_MODE.USER,
+        idealFacingMode: FACING_MODES.USER,
         isImageMirror: true
       });
     } else {
       this.setState({
-        idealFacingMode: FACING_MODE.ENVIRONMENT,
+        idealFacingMode: FACING_MODES.ENVIRONMENT,
         isImageMirror: false
       });
     }
