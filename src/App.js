@@ -175,15 +175,15 @@ class App extends Component {
   };
 
   changeCameraType() {
-    if (this.state.idealFacingMode === 'FACING_MODE.ENVIRONMENT') {
+    if (this.state.idealFacingMode === 'FACING_MODES.ENVIRONMENT') {
       this.setState({
-        idealFacingMode: 'FACING_MODE.USER',
-        mirror: true
+        idealFacingMode: 'FACING_MODES.USER',
+        //mirror: true
       });
     } else {
       this.setState({
-        idealFacingMode: 'FACING_MODE.ENVIRONMENT',
-        mirror: false
+        idealFacingMode: 'FACING_MODES.ENVIRONMENT',
+        //mirror: false
       });
     }
   }
