@@ -1,0 +1,165 @@
+.App {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-width: 400px;
+  height: 600px;
+}
+
+
+.bg-image {
+
+   background: url("./assets/jpg/blurred-kitchen-background.jpg") no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+
+    /* Set rules to fill background */
+    min-height: auto;
+    min-width: auto;
+    
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+    }
+
+    @media screen and (max-width: 1024px) { /* Specific to this particular image */
+    img.bg {
+      left: 50%;
+      margin-left: -512px;   /* 50% */
+ }
+}
+
+.App h1 {
+  color: goldenrod;
+  background-color: teal;
+  margin-left: 25px;
+  margin-right: 25px;
+  padding-top: 5.5px;
+  padding-bottom: 5px;
+  margin-top: 12px;
+  margin-bottom: 40px;
+  font-family: Georgia, Times, 'Times New Roman', serif;
+}
+/* .App center {
+  background-color: rgba(250, 247, 247, 0.6);
+} */
+
+.fishImg {
+  width: 200px;
+  height: 200px;
+  border-radius: 0%;
+  border-color: white;
+  border-width: 5px;
+}
+
+.information {
+  font-weight: bold;
+  text-align: center;
+  list-style-type: square;
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  background-color: #FED6B9;
+
+}
+
+.wizard {
+  padding-bottom: 60px;
+}
+
+.prediction span {
+  font-weight: bold;
+  font-size: 14px;
+  font-style: italic;
+  color: white;
+}
+
+.prediction p {
+  color: black;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: tea;
+}
+
+.openCamera {
+  color: white;
+  background-color: teal;
+  border-radius: 10px;
+  border-color: white;
+  font-size: 1.25em;
+  font-weight: 700;
+  display: center;
+  padding: 5px 25px;
+
+}
+
+.inputfile {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+}
+
+.inputfile + label {
+  margin-top: 3px;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: black;
+  background-color: white;
+  border-color: black;
+  display: inline-block;
+  padding: 4px 10px;
+  
+}
+
+.inputfile + label {
+  cursor: pointer;
+}
+
+.inputfile + label * {
+  pointer-events: none;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: teal;
+}
+
+.uploader {
+  margin-top: 20px;
+}
+
+.uploadButton {
+  color: black;
+  background-color: white;
+  border-radius: 0;
+  font-style: italic;
+  border-color: black;
+  font-size: 1.4em;
+  font-weight: 700;
+  display: inline-block;
+  padding: 4px 9px;
+  margin-left: 5px;
+}
+
+.uploadButton:hover {
+  background-color: teal;
+  border-color: black;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
