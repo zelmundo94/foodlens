@@ -298,7 +298,7 @@ class App extends Component {
                     this.onTakePhoto(dataUri);
                   }}
                 />
-                <button onPress={this.changeCameraType.bind(this)}>
+                <button onClick={this.changeCameraType.bind(this)}>
             [SWITCH]</button>
               </div>
             ) : null}
