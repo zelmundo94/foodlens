@@ -293,8 +293,8 @@ class App extends Component {
               <div className="camera">
                 <Camera
                   imageType={IMAGE_TYPES.JPG}
-                  type={this.state.idealFacingMode} 
-                  mirrorImage={this.state.isImageMirror}
+                  idealFacingMode={this.state.idealFacingMode} 
+                  isImageMirror={this.state.isImageMirror}
                   idealResolution={{ width: 2160, height: 1440 }}
                   onTakePhoto={dataUri => {
                     this.onTakePhoto(dataUri);
