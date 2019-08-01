@@ -32,6 +32,13 @@
   border-width: 5px;
 }
 
+.information {
+  font-weight: bold;
+  text-align: center;
+  list-style-type: square;
+}
+
+
 .wizard {
   padding-top: 40px;
   padding-bottom: 60px;

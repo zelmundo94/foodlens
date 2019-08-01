@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import Camera, { IMAGE_TYPES } from "react-html5-camera-photo";
+import Camera, { IMAGE_TYPES, FACING_MODES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import Loader from "react-loader-spinner";
 import Popup from "reactjs-popup";
@@ -14,6 +14,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      idealFacingMode: FACING_MODES.USER, 
       myArray: [],
       fishclass: "",
       confidence: "",
@@ -173,6 +174,20 @@ class App extends Component {
     });
   };
 
+  changeCameraType() {
+    if (this.state.idealFacingMode === 'FACING_MODE.ENVIRONMENT') {
+      this.setState({
+        idealFacingMode: 'FACING_MODE.USER',
+        mirror: true
+      });
+    } else {
+      this.setState({
+        idealFacingMode: 'FACING_MODE.ENVIRONMENT',
+        mirror: false
+      });
+    }
+  }
+
   // displayResults = () => {
   //   let popArray = [];
   //   for (let key in this.state.result) {
@@ -188,13 +203,13 @@ class App extends Component {
   displayResults = () => {
     let popArray = [];
     popArray.push(
-      <p className="information">
-        Name: {this.state.result.name}
-        Size: {this.state.result.size}
-        Habitat: {this.state.result.habitat}
-        Weight: {this.state.result.weight}
-        Ethnicity: {this.state.result.ethnicity}
-      </p>
+      <ol className="information">
+       <li>Name: {this.state.result.name}</li>
+       <li>Size: {this.state.result.size}</li>
+       <li>Habitat: {this.state.result.habitat} </li>
+       <li>Weight: {this.state.result.weight}</li>
+       <li>Ethnicity: {this.state.result.ethnicity}</li>
+      </ol>
     );
     return popArray;
   };
@@ -283,6 +298,8 @@ class App extends Component {
                     this.onTakePhoto(dataUri);
                   }}
                 />
+                <button onPress={this.changeCameraType.bind(this)}>
+            [SWITCH]</button>
               </div>
             ) : null}
             {this.state.loading ? null : (
