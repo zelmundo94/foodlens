@@ -175,15 +175,15 @@ class App extends Component {
   };
 
   changeCameraType() {
-    if (this.state.idealFacingMode === 'FACING_MODES.ENVIRONMENT') {
+    if (this.state.idealFacingMode === FACING_MODE.ENVIRONMENT) {
       this.setState({
-        idealFacingMode: 'FACING_MODES.USER',
-        //mirror: true
+        idealFacingMode: FACING_MODE.USER,
+        isImageMirror: true
       });
     } else {
       this.setState({
-        idealFacingMode: 'FACING_MODES.ENVIRONMENT',
-        //mirror: false
+        idealFacingMode: FACING_MODE.ENVIRONMENT,
+        isImageMirror: false
       });
     }
   }
@@ -293,6 +293,8 @@ class App extends Component {
               <div className="camera">
                 <Camera
                   imageType={IMAGE_TYPES.JPG}
+                  type={this.state.idealFacingMode} 
+                  mirrorImage={this.state.isImageMirror}
                   idealResolution={{ width: 2160, height: 1440 }}
                   onTakePhoto={dataUri => {
                     this.onTakePhoto(dataUri);
