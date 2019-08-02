@@ -113,36 +113,6 @@ class App extends Component {
     }
   };
 
-  // .then(res => res.json())
-  // .then(function(data) {
-  //   let tmp = JSON.stringify(data);
-  //   tmp = tmp.replace("{", "");
-  //   tmp = tmp.replace("}", "");
-  //   tmp = tmp.replace(/"/g, "");
-  //   let myArray = tmp.split(",");
-
-  //   console.log("test1: ", tmp);
-  //   console.log("test2: ", myArray);
-  // })
-
-  //         .then(response => response.json())
-  //         .then(data =>
-  //           this.setState({
-  //             key: data.key,
-  //             cameraOn: false,
-  //             image: true,
-  //             dataUri: result,
-  //             loading: true,
-  //             isOpen: true,
-  //             message: "UPLOAD AN IMAGE"
-  //           })
-  //         )
-  //         .catch(err => console.log(err));
-  //     });
-  //   } else {
-  //     return null;
-  //   }
-  // };
 
   handleChange = e => {
     if (this.uploadInput.files[0]) {

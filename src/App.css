@@ -9,7 +9,7 @@
 
 .bg-image {
 
-   background: url("./assets/jpg/blurred-kitchen-background.jpg") no-repeat center center fixed;
+   background: url("./assets/jpg/blurred-kitchen-background.jpg") no-repeat center center relative;
    -webkit-background-size: cover;
    -moz-background-size: cover;
    -o-background-size: cover;
