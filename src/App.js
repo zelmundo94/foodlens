@@ -92,15 +92,9 @@ class App extends Component {
         )
           .then(response => response.json())
           .then(data => {
-            //let tmp = JSON.stringify(data);
-            // let tmp = data.json();
-            //tmp = tmp.replace("{", "");
-            //tmp = tmp.replace("}", "");
-            //tmp = tmp.replace(/"/g, "");
-            // let myArray = tmp.split(",");
-
+        
             console.log("tmp: ", data);
-            // console.log("test2: ", myArray);
+          
 
             this.setState({
               result: data,
