@@ -100,6 +100,15 @@
 
 }
 
+.cardContainer {
+  background-color: white;
+  margin: 0 auto;
+  width: 50%;
+  height: auto;
+  box-shadow: 0 1px 2px 0 rgb(255, 255, 255);
+  transition: all .2s ease-in-out;
+}
+
 .recipeButton {
   color: white;
   background-color: teal;

@@ -28,9 +28,6 @@ class App extends Component {
       displayRecipes: false
     };
   }
-
- 
-
     
   
 
@@ -65,6 +62,7 @@ class App extends Component {
     });
   };
 
+  
   onTakePhoto(dataUri) {
     const savedImage = dataUri.split(",")[1];
     fetch(
@@ -180,17 +178,29 @@ class App extends Component {
 
   displayResults = () => {
     let popArray = [];
-    popArray.push(
-      <ol className="information">
-       <li>Name: {this.state.result.name}</li>
-       <li>Size: {this.state.result.size}</li>
-       <li>Habitat: {this.state.result.habitat} </li>
-       <li>Weight: {this.state.result.weight}</li>
-       <li>Ethnicity: {this.state.result.ethnicity}</li>
-      </ol>
-    );
-    return popArray;
-  };
+    let prediction = this.state.result.probability;
+    console.log(prediction);
+    if (prediction > 0.8) {
+      popArray.push(
+        <ol className="information">
+          <li>Name: {this.state.result.display}</li>
+          <li>Size: {this.state.result.size}</li>
+          <li>Habitat: {this.state.result.habitat} </li>
+          <li>Weight: {this.state.result.weight}</li>
+          <li>Ethnicity: {this.state.result.ethnicity}</li>
+        </ol>
+      );
+    } else {
+      popArray.push(
+        <div class="cardContainer">
+          <p>😔 Could not identify. Please try again </p>
+        </div>
+      );
+    }
+
+    return popArray
+  
+  }
 
  
   render() {
@@ -292,7 +302,7 @@ class App extends Component {
                   imageType={IMAGE_TYPES.JPG}
                   idealFacingMode={this.state.idealFacingMode} 
                   isImageMirror={this.state.isImageMirror}
-                  idealResolution={{ width: 960, height: 1440 }}
+                  idealResolution={{ width: 1440, height: 1440 }}
                   onTakePhoto={dataUri => {
                     this.onTakePhoto(dataUri);
                   }}
