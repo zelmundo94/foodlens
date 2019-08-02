@@ -49,6 +49,13 @@
   .react-html5-camera-photo {
     position: relative;
     text-align: center;
+    border-style: groove;
+  }
+
+  .react-html5-camera-photo :hover {
+    -moz-box-shadow: 0 0.5 15px teal;
+		-webkit-box-shadow: 0 0.5 15px teal;
+		box-shadow: 0 0 10px teal;
   }
   .react-html5-camera-photo > img,
   .react-html5-camera-photo > video {

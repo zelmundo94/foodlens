@@ -6,6 +6,7 @@ import "./App.css";
 import "./Camera.css";
 import "./Emojicon";
 import Modal from "./Modal";
+import AnotherRecipeButton from "./Components/Recipes";
 
 class App extends Component {
   constructor(props) {
@@ -21,9 +22,25 @@ class App extends Component {
       upload: false,
       dataUri: "",
       prediction: false,
-      isOpen: false
+      isOpen: false,
+      isEmptyState: true,
+      recipes: [ {id: 'pompano', title: 'fried pompano'} ],
+      displayRecipes: false
     };
   }
+
+ 
+
+    
+  
+
+  triggerRecipeState = () => {
+    this.setState({
+        displayRecipes: !this.state.displayRecipes
+    })
+}
+
+
 
   getBase64(file, cb) {
     let reader = new FileReader();
@@ -114,6 +131,7 @@ class App extends Component {
   };
 
 
+
   handleChange = e => {
     if (this.uploadInput.files[0]) {
       let file = this.uploadInput.files[0];
@@ -174,14 +192,29 @@ class App extends Component {
     return popArray;
   };
 
+ 
   render() {
+
+    let recipes = null;
+
+    if ( this.state.displayRecipes ) {
+      recipes = (
+      <div>
+           { this.state.recipes.map((recipe, index) => {
+                return <AnotherRecipeButton key={recipe.id}
+                title={recipe.title} />
+           }) }
+      </div>
+      
+      ) 
+    }
+
+   
+
     return (
       <div className="bg-image">
       <div className="App">
-       
-        {/* <button onClick={this.toggleModal}>
-          Open the modal
-        </button> */}
+      
           <div className="wizard">
             <h1>FOODLENS 🧐</h1>
             {/*  {this.state.loading
@@ -247,6 +280,10 @@ class App extends Component {
                 <button className="openCamera" onClick={this.showCamera}>
                   Take another photo!
                 </button>
+
+                <button className="recipeButton" onClick={this.triggerRecipeState}>View Recipes</button>
+               {recipes}
+
               </div>
             ) : null}
             {this.state.cameraOn ? (
@@ -255,13 +292,13 @@ class App extends Component {
                   imageType={IMAGE_TYPES.JPG}
                   idealFacingMode={this.state.idealFacingMode} 
                   isImageMirror={this.state.isImageMirror}
-                  idealResolution={{ width: 640, height: 480 }}
+                  idealResolution={{ width: 640, height: 1440 }}
                   onTakePhoto={dataUri => {
                     this.onTakePhoto(dataUri);
                   }}
                 />
                 <button onClick={this.changeCameraType.bind(this)}>
-            [SWITCH]</button>
+            SWITCH</button>
               </div>
             ) : null}
             {this.state.loading ? null : (
