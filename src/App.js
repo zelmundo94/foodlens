@@ -50,6 +50,28 @@ class App extends Component {
     };
   }
 
+  convertBase64ToBlob(base64, cb) {
+    console.log(typeof base64);
+
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "" });
+
+    let reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onload = function() {
+      cb(reader.result);
+    };
+    console.log(typeof blob);
+    reader.onerror = function(error) {
+      console.log("Error: ", error);
+    };
+  }
+
   showCamera = e => {
     this.setState({
       cameraOn: true,
@@ -64,25 +86,61 @@ class App extends Component {
 
   
   onTakePhoto(dataUri) {
-    const savedImage = dataUri.split(",")[1];
-    fetch(
-      /* API endpoint here */ "https://50xlesnkqe.execute-api.us-east-1.amazonaws.com/foodLens-deploy1/index",
-      {
-        method: "POST",
-        body: JSON.stringify({ payload: savedImage })
-      }
-    )
-      .then(response => response.json())
-      .then(data =>
-        this.setState({
-          savedImage: data,
-          cameraOn: false,
-          loading: true,
-          dataUri: savedImage
-        })
-      )
-      .catch(err => console.log(err));
+    if (true) {
+      const savedImage = dataUri.split(",")[1];
+      this.convertBase64ToBlob(savedImage, result => {
+        fetch(
+          /* API endpoint here */ "https://50xlesnkqe.execute-api.us-east-1.amazonaws.com/foodLens-deploy1/index",
+          {
+            method: "POST",
+            headers: {
+              //"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+              //'Access-Control-Allow-Origin': "*"
+            },
+            body: JSON.stringify({ payload: savedImage })
+          }
+        )
+          .then(response => response.json())
+          .then(data => {
+            console.log("tmp3: ", data);
+
+            this.setState({
+              result: data,
+              cameraOn: false,
+              image: true,
+              dataUri: result,
+              loading: true,
+              isOpen: true,
+              message: "UPLOAD AN IMAGE"
+            });
+          })
+          .catch(err => console.log(err));
+      });
+    } else {
+      return null;
+    }
   }
+  
+  // async predictFish(url, options, n) {
+  //   try {
+  //     const response = await fetch(url, options);
+  //     const data = await response.json();
+  //     let fishclass = data.class.split("'")[1].replace(/_/g, " ");
+  //     let confidence = String(data.confidence * 100).substring(0, 5) + "%";
+  //     this.setState({
+  //       image: true,
+  //       loading: false,
+  //       fishclass: fishclass,
+  //       confidence: confidence,
+  //       upload: false,
+  //       prediction: true
+  //     });
+  //   } catch (err) {
+  //     if (n === 1) throw err;
+  //     return await this.predictFish(url, options, (n = 1));
+  //   }
+  // }
+
 
   handleShowDialog = () => {
     this.setState({ isOpen: !this.state.isOpen });
@@ -164,17 +222,7 @@ class App extends Component {
     }
   }
 
-  // displayResults = () => {
-  //   let popArray = [];
-  //   for (let key in this.state.result) {
-  //     popArray.push(
-  //       <p key={key} className="information">
-  //         {key}: {this.state.result[key]}
-  //       </p>
-  //     );
-  //   }
-  //   return popArray;
-  // };
+
 
   displayResults = () => {
     let popArray = [];
@@ -227,20 +275,16 @@ class App extends Component {
       
           <div className="wizard">
             <h1>FOODLENS 🧐</h1>
-            {/*  {this.state.loading
+            {/* {this.state.loading
               ? setTimeout(() => {
-                  this.predictFish(  invoke endpoint URL
-                    "",
+                  this.predictFish(
+                    "https://50xlesnkqe.execute-api.us-east-1.amazonaws.com/foodLens-deploy1/index",
                     {
-                      //method: "POST",
-                      headers: {
-                        //"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                        //'Access-Control-Allow-Origin': "*"
-                      },
-                       body: JSON.stringify({
+                      method: "POST",
+                      body: JSON.stringify({
                         url:
-                         "" +
-                          this.state.key
+                          "" +
+                          this.state.result
                       })
                     }
                   );
@@ -285,6 +329,7 @@ class App extends Component {
                       ? this.displayResults()
                       : ""}
                   </Modal>
+                  <Modal show={this.state.isOpen}></Modal> 
                   <span>{this.state.payload}</span>
                 </div>
                 <button className="openCamera" onClick={this.showCamera}>
