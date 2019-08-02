@@ -285,7 +285,7 @@ class App extends Component {
                   imageType={IMAGE_TYPES.JPG}
                   idealFacingMode={this.state.idealFacingMode} 
                   isImageMirror={this.state.isImageMirror}
-                  idealResolution={{ width: 2160, height: 1440 }}
+                  idealResolution={{ width: 640, height: 480 }}
                   onTakePhoto={dataUri => {
                     this.onTakePhoto(dataUri);
                   }}
