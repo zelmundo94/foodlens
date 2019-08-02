@@ -1,10 +1,7 @@
-
 import React, { Component } from "react";
 import Camera, { IMAGE_TYPES, FACING_MODES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import Loader from "react-loader-spinner";
-import Popup from "reactjs-popup";
-//import './BoundingBox.js';
 import "./App.css";
 import "./Camera.css";
 import "./Emojicon";
@@ -17,7 +14,6 @@ class App extends Component {
       idealFacingMode: FACING_MODES.USER, 
       myArray: [],
       fishclass: "",
-      confidence: "",
       loading: false,
       cameraOn: true,
       image: false,
@@ -64,10 +60,10 @@ class App extends Component {
       .then(response => response.json())
       .then(data =>
         this.setState({
-          key: data.key,
+          savedImage: data,
           cameraOn: false,
           loading: true,
-          dataUri: dataUri
+          dataUri: savedImage
         })
       )
       .catch(err => console.log(err));
@@ -216,14 +212,14 @@ class App extends Component {
 
   render() {
     return (
+      <div className="bg-image">
       <div className="App">
+       
         {/* <button onClick={this.toggleModal}>
           Open the modal
         </button> */}
-        <center>
           <div className="wizard">
             <h1>FOODLENS 🧐</h1>
-
             {/*  {this.state.loading
               ? setTimeout(() => {
                   this.predictFish(  invoke endpoint URL
@@ -318,15 +314,16 @@ class App extends Component {
                   accept="image/jpeg"
                 />
                 <label htmlFor="inputfile">
-                  UPLOAD <span role="img" />
+                  SELECT <span role="img" />
                 </label>
                 <button className="uploadButton" onClick={this.handleUpload}>
-                  TEST
+                  DETECT
                 </button>
               </div>
             )}
           </div>
-        </center>
+        
+      </div>
       </div>
     );
   }

@@ -1,12 +1,39 @@
 .App {
-  margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   max-width: 400px;
   height: 600px;
-  background-image: url("/assets/png/foodlens-logo.png");
-  background-size: 300px;
+}
+
+
+.bg-image {
+
+   background: url("./assets/jpg/blurred-kitchen-background.jpg") no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+
+    /* Set rules to fill background */
+    min-height: auto;
+    min-width: auto;
+    
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+    }
+
+    @media screen and (max-width: 1024px) { /* Specific to this particular image */
+    img.bg {
+      left: 50%;
+      margin-left: -512px;   /* 50% */
+ }
 }
 
 .App h1 {
@@ -14,7 +41,7 @@
   background-color: teal;
   margin-left: 25px;
   margin-right: 25px;
-  padding-top: 5px;
+  padding-top: 5.5px;
   padding-bottom: 5px;
   margin-top: 12px;
   margin-bottom: 40px;
@@ -36,11 +63,13 @@
   font-weight: bold;
   text-align: center;
   list-style-type: square;
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  background-color: #FED6B9;
+
 }
 
-
 .wizard {
-  padding-top: 40px;
   padding-bottom: 60px;
 }
 
@@ -60,15 +89,15 @@
 }
 
 .openCamera {
-  color: black;
+  color: white;
   background-color: teal;
-  border-radius: 0;
+  border-radius: 10px;
   border-color: white;
   font-size: 1.25em;
   font-weight: 700;
-  display: inline-block;
-  padding: 6px 10px;
-  margin-left: 5px;
+  display: center;
+  padding: 5px 25px;
+
 }
 
 .inputfile {
